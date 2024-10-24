@@ -2,8 +2,8 @@ import openai
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
-# API Key OpenAI
-openai.api_key = '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'
+# API Key OpenAI yang baru
+openai.api_key = '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'
 
 # Fungsi untuk memproses pesan pengguna dan menjawab dari OpenAI
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
