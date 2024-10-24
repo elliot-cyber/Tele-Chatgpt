@@ -1,6 +1,6 @@
 import openai
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 # API Key OpenAI
 openai.api_key = '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'
@@ -25,7 +25,7 @@ async def start(update: Update, context):
 
 if __name__ == '__main__':
     # Token Bot Telegram
-    application = ApplicationBuilder().token('7586237226:AAHPMFLJKX91meJaUdlhQKHvOz2n41PRZnI').build()
+    application = Application.builder().token('7586237226:AAHPMFLJKX91meJaUdlhQKHvOz2n41PRZnI').build()
 
     # Daftar handler untuk menangani command /start dan pesan
     application.add_handler(CommandHandler('start', start))
