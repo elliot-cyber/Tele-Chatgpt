@@ -1,26 +1,30 @@
 import openai
 from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
 # API Key OpenAI
 openai.api_key = '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'
 
 # Fungsi untuk memproses pesan pengguna dan menjawab dari OpenAI
-async def handle_message(update: Update, context):
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
 
-    # Kirim pesan ke OpenAI API
-    response = openai.Completion.create(
-        engine="gpt-4",
-        prompt=user_message,
-        max_tokens=150
-    )
+    try:
+        # Kirim pesan ke OpenAI API dengan model 'text-davinci-003'
+        response = openai.Completion.create(
+            engine="text-davinci-003",  # Gunakan engine yang tersedia
+            prompt=user_message,
+            max_tokens=150  # Atur sesuai kebutuhan
+        )
+        
+        # Balas ke pengguna dengan hasil dari OpenAI
+        await update.message.reply_text(response.choices[0].text.strip())
     
-    # Balas ke pengguna dengan hasil dari OpenAI
-    await update.message.reply_text(response.choices[0].text.strip())
+    except Exception as e:
+        await update.message.reply_text(f"Terjadi kesalahan: {str(e)}")
 
 # Fungsi untuk command /start
-async def start(update: Update, context):
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Halo! Kirimkan pertanyaanmu, dan aku akan mencoba menjawab menggunakan OpenAI.")
 
 if __name__ == '__main__':
