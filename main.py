@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # Masukkan API Key OpenAI
-openai.api_key = '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'
+openai.api_key = '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'
 
 # Fungsi untuk menangani pesan dari pengguna
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
